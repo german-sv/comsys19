@@ -47,7 +47,8 @@ def user():
 	else:
 		response = requests.get(API_URI+"user/"+session['group_id'],
 			headers={"Authorization": "JWT " + API_TOKEN})
-		group_data=json.loads(json.loads(response.text))
+		print response.text
+                group_data=json.loads(json.loads(response.text))
 		group_data['error_message'] = error_message
 		return render_template('user.html', **group_data)
 
@@ -55,7 +56,7 @@ if __name__ == "__main__":
 	app.secret_key = os.urandom(12)
 	response = requests.post(API_URI+"auth", data=json.dumps(API_AUTH),
             headers={'Content-Type': 'application/json'})
-
+        print response.text
 	if not json.loads(response.text)['access_token']:
 		print "Could not obtain the API_TOKEN!"
 		exit()
