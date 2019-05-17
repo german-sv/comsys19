@@ -7,6 +7,7 @@ from flask_jwt import JWT, jwt_required, current_identity
 from werkzeug.security import safe_str_cmp
 import firebirdsql
 from flask_sqlalchemy import SQLAlchemy
+import datetime
 
 ## Flask instance
 app = Flask(__name__)
@@ -240,6 +241,7 @@ api.add_resource(Log, '/user/<group_id>/logs') # Logs
 
 # Security
 app.config['SECRET_KEY'] = db_password
+app.config['JWT_EXPIRATION_DELTA'] = datetime.timedelta(days=30)
 jwt = JWT(app, JWTAuthenticator.authenticate, JWTAuthenticator.identity)
 
 if __name__ == '__main__':
