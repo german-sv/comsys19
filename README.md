@@ -2,20 +2,21 @@
 
 ## Folder structure
 
-### /MQTT/Client 
+### /MQTT/Client/
 Sample client application for the ping service. Includes certificates and AWS library. Note: you can find the MQTT broker endhost inside the script.
 
-### /MQTT/Broker
+### /MQTT/Broker/
 The server application that generates ping request messages.
 
-### /DB 
+### /DB/ 
 Contains the schema of the emplyed DB (Firebird) and the file containing initial credentials of each group.
 
-### /WebAPI 
+### /WebAPI/ 
 Source code of the available REST API
 
-### /WebPortal
+### /WebPortal/
 Source code of the web server application
 
-## Folder structure
+## Note
+The project is undergoing continuous modifications.
 For any issue please contact german.sviridov{::at::}polito{::dot::}com
