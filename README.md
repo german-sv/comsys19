@@ -1,4 +1,4 @@
-# Source code for the Laboratory on communication systems 
+# Source code for the Laboratory on Communication Systems 
 
 ## Folder structure
 
