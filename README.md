@@ -19,4 +19,4 @@ Source code of the web server application
 
 ## Note
 The project is undergoing continuous modifications.
-For any issue please contact german.sviridov{::at::}polito{::dot::}it
+In case of any issue please open a topic here ot contact german.sviridov{::at::}polito{::dot::}it
