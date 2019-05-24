@@ -7,7 +7,7 @@ from flask_jwt import JWT, jwt_required, current_identity
 from werkzeug.security import safe_str_cmp
 import firebirdsql
 from flask_sqlalchemy import SQLAlchemy
-import datetime
+from datetime import datetime
 
 ## Flask instance
 app = Flask(__name__)
@@ -230,7 +230,7 @@ class Log(Resource):
             exit()
 
         try:
-            datetime.datetime.strptime(data['timestamp'], '%Y-%m-%d %H:%M:%S.%f')
+            datetime.strptime(data['timestamp'], '%Y-%m-%d %H:%M:%S.%f')
         except:
             print("Wrong datetime format in event.")
             exit()
