@@ -152,7 +152,7 @@ class UserInformation(Resource):
 
     @staticmethod
     def isAdmin(group_id):
-        if group_id in ["admin", "german"]:
+        if group_id in ["admin", "german", "aws", "guido"]:
             return True
         return False
 
@@ -236,7 +236,7 @@ class Log(Resource):
             exit()
 
         if not UserInformation.isAdmin(Customers.query.filter_by(id=current_identity.id).first().group_id):
-            print("User is enabled to insert logs")
+            print("User is not enabled to insert logs")
             exit()
 
         device_id = Configuration.query.filter_by(device_mac=data['devce_mac']).first().id
