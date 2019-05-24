@@ -246,8 +246,13 @@ class Log(Resource):
         
         newLog = Logs(device_id=device_id, timestamp_srv=datetime.datetime.now(), timestamp_dev=datetime.datetime.strptime(data['timestamp'], '%Y-%m-%d %H:%M:%S.%f'), event_id=data['event_id'], event=data['event'])
         db.session.add(newLog)
+
+        # Custom event processing
+        if data['event_id'] == 0: # Ping request message
+            Configuration.query.update({Configuration.status: 0}) 
+        elif data['event_id'] == 1: # ping reply
+            Configuration.query.filter_by(device_mac=data['device_mac']).first().status = 1
         db.session.commit()
-        print("Committed new log to the DB")
     
     @staticmethod
     def getJsonLogs(c):
