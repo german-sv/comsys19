@@ -249,9 +249,9 @@ class Log(Resource):
 
         # Custom event processing
         if data['event_id'] == 0: # Ping request message
-            Configuration.query.update({Configuration.status: 0}) 
+            Configuration.query.update({Configuration.device_status: 0}) 
         elif data['event_id'] == 1: # ping reply
-            Configuration.query.filter_by(device_mac=data['device_mac']).first().status = 1
+            Configuration.query.filter_by(device_mac=data['device_mac']).first().device_status = 1
         db.session.commit()
     
     @staticmethod
