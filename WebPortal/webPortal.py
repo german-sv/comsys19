@@ -54,6 +54,7 @@ def user():
 		return render_template('user.html', **group_data)
 
 def renewToken():
+	global API_TOKEN
 	response = requests.post(API_URI+"auth", data=json.dumps(API_AUTH),
             headers={'Content-Type': 'application/json'})
         print response.text
