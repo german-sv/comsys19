@@ -17,6 +17,9 @@ Source code of the available REST API
 ### /WebPortal/
 Source code of the web server application
 
+### /Lambda/
+Source of the Lambda function running on AWS
+
 ## Note
 The project is undergoing continuous modifications.
 In case of any issue please open a topic here ot contact german.sviridov{::at::}polito{::dot::}it
