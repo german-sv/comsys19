@@ -15,7 +15,7 @@ def sendToWS(event):
     
     return {
         'statusCode': 200,
-        'body': json.dumps('Hello from Lambda!')
+        'body': json.dumps('Insert successful!')
     }
 
 def handler(event, context):
