@@ -25,6 +25,8 @@ def do_admin_login():
 		session['logged_in'] = True
 		session['group_id'] = request.form['username']
 		return redirect(url_for('user'))
+	else:
+		renewToken()
 
 	return home()
 
@@ -33,7 +35,7 @@ def user():
 	error_message = None
 	if 'logged_in' not in session or session['logged_in'] == False:
 			return render_template('login.html')
-
+	renewToken()
 	if request.method == 'POST':
 		group_data = {"group_id":session['group_id'], "group_psw_new":request.form['group_psw_new'], "group_psw":request.form['group_psw'], "group_info":request.form['group_info']}
 		if len(group_data['group_psw_new']) > 0 and len(group_data['group_psw_new']) < 4:
@@ -52,8 +54,7 @@ def user():
 		group_data['error_message'] = error_message
 		return render_template('user.html', **group_data)
 
-if __name__ == "__main__":
-	app.secret_key = os.urandom(12)
+def renewToken():
 	response = requests.post(API_URI+"auth", data=json.dumps(API_AUTH),
             headers={'Content-Type': 'application/json'})
         print response.text
@@ -62,4 +63,8 @@ if __name__ == "__main__":
 		exit()
 
 	API_TOKEN = json.loads(response.text)['access_token']
+
+if __name__ == "__main__":
+	app.secret_key = os.urandom(12)
+	
 	app.run(debug=True, host='0.0.0.0', port=80)

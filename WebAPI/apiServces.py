@@ -219,6 +219,34 @@ class Log(Resource):
                 logHistory.append(Log.getJsonLogs(l))
             result = {'status' : GOOD_CALL, 'data': logHistory}
         return json.dumps(result)
+
+    @jwt_required()
+    def post(self, data):
+
+        # Check content of event
+        if 'event_id' not in event or 'timestamp' not in event or 'device_mac' not in event:
+            print('Event is missing some fields.')
+            exit()
+
+        try:
+            datetime.strptime(event['timestamp'], '%Y-%m-%d %H:%M:%S.%f')
+        except:
+            print("Wrong datetime format in event.")
+            exit()
+
+        if not UserInformation.isAdmin(Customers.query.filter_by(id=current_identity.id).first().group_id):
+            print("User is enabled to insert logs")
+            exit()
+
+        device_id = Configuration.query.filter_by(device_mac=event['devce_mac']).first().id
+        if not device_id:
+            print "Device mac not found"
+            exit()
+        
+        newLog = Logs(device_id, datetime.now(), datetime.strptime(event['timestamp'], '%Y-%m-%d %H:%M:%S.%f'), data['event_id'], event['event'])
+        db.session.add(newLog)
+        db.session.commit()
+        print("Committed new log to the DB")
     
     @staticmethod
     def getJsonLogs(c):
