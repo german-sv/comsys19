@@ -13,7 +13,10 @@ def sendToWS(event):
 
     response = requests.post(API_URI+"user/0/logs", data=json.dumps(event), headers={"Authorization": "JWT " + API_TOKEN, 'Content-Type': 'application/json'})
     
-    return json.load(response)
+    return {
+        'statusCode': 200,
+        'body': json.dumps('Hello from Lambda!')
+    }
 
 def handler(event, context):
     return sendToWS(event)
