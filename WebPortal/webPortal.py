@@ -19,7 +19,6 @@ def home():
 
 @app.route('/login', methods=['POST'])
 def do_admin_login():
-	print API_TOKEN
 	response = requests.post(API_URI+"user/verify", data=json.dumps({'group_id': request.form['username'], 'group_psw': request.form['password']}), headers={"Authorization": "JWT " + API_TOKEN, 'Content-Type': 'application/json'})
 
 	if json.loads(json.loads(response.text))['code'] == 200:
