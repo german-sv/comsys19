@@ -244,7 +244,7 @@ class Log(Resource):
             print "Device mac not found"
             exit()
         
-        newLog = Logs(device_id, datetime.datetime.now(), datetime.datetime.strptime(data['timestamp'], '%Y-%m-%d %H:%M:%S.%f'), data['event_id'], data['event'])
+        newLog = Logs(device_id=device_id, timestamp_srv=datetime.datetime.now(), timestamp_dev=datetime.datetime.strptime(data['timestamp'], '%Y-%m-%d %H:%M:%S.%f'), event_id=data['event_id'], event=data['event'])
         db.session.add(newLog)
         db.session.commit()
         print("Committed new log to the DB")
