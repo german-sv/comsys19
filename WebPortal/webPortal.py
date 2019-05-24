@@ -25,8 +25,6 @@ def do_admin_login():
 		session['logged_in'] = True
 		session['group_id'] = request.form['username']
 		return redirect(url_for('user'))
-	else:
-		renewToken()
 
 	return home()
 
