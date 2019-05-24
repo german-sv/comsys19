@@ -239,7 +239,7 @@ class Log(Resource):
             print("User is not enabled to insert logs")
             exit()
 
-        device_id = Configuration.query.filter_by(device_mac=data['devce_mac']).first().id
+        device_id = Configuration.query.filter_by(device_mac=data['device_mac']).first().id
         if not device_id:
             print "Device mac not found"
             exit()
