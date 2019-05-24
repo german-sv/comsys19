@@ -182,6 +182,7 @@ class DeviceConfiguration(Resource):
     @jwt_required()
     def post(self, group_id):
         data = request.get_json()
+        print data
         config = Customers.query.filter_by(id=current_identity.id).first().configuration
         if 'device_mac' not in data or 'configuration' not in data or 'nickname' not in data:
             return ErrorFactory.make_error(message="Parameters missing for the configuration update.")
