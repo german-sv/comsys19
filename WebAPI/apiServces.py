@@ -224,7 +224,7 @@ class Log(Resource):
     @jwt_required()
     def post(self, group_id):
         data = request.get_json()
-        print data
+        print data['timestamp']
         # Check content of data
         if 'event_id' not in data or 'timestamp' not in data or 'device_mac' not in data:
             print('Event is missing some fields.')
