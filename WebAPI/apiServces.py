@@ -7,7 +7,7 @@ from flask_jwt import JWT, jwt_required, current_identity
 from werkzeug.security import safe_str_cmp
 import firebirdsql
 from flask_sqlalchemy import SQLAlchemy
-from datetime import datetime
+import datetime
 
 ## Flask instance
 app = Flask(__name__)
@@ -230,7 +230,7 @@ class Log(Resource):
             exit()
 
         try:
-            datetime.strptime(data['timestamp'], '%Y-%m-%d %H:%M:%S.%f')
+            datetime.datetime.strptime(data['timestamp'], '%Y-%m-%d %H:%M:%S.%f')
         except:
             print("Wrong datetime format in event.")
             exit()
@@ -244,7 +244,7 @@ class Log(Resource):
             print "Device mac not found"
             exit()
         
-        newLog = Logs(device_id, datetime.now(), datetime.strptime(data['timestamp'], '%Y-%m-%d %H:%M:%S.%f'), data['event_id'], data['event'])
+        newLog = Logs(device_id, datetime.datetime.now(), datetime.datetime.strptime(data['timestamp'], '%Y-%m-%d %H:%M:%S.%f'), data['event_id'], data['event'])
         db.session.add(newLog)
         db.session.commit()
         print("Committed new log to the DB")
