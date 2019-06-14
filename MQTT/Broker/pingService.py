@@ -27,7 +27,7 @@ AllowedActions = ['both', 'publish', 'subscribe']
 def customCallback(client, userdata, message):
     print("Received a new message: ")
     messageContent = json.loads(message.payload)
-    messageData = json.loads(messageContent['event'])
+    messageData = messageContent['event']
     print(messageContent)
     print(messageData['message'])
     print("Sequence ", messageData['sequence'])
