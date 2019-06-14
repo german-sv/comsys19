@@ -123,7 +123,7 @@ while True:
         message['device_mac'] = "00:00:00:00:00:00" # server
         message['timestamp'] = str(datetime.datetime.now())
         message['event_id'] = 0
-        message['event'] = json.dumps(pingData)
+        message['event'] = pingData
         messageJson = json.dumps(message)
         myAWSIoTMQTTClient.publish(topic, messageJson, 1)
         if args.mode == 'publish':
