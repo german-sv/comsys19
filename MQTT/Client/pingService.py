@@ -33,7 +33,7 @@ def replyToPing(sequence):
     message['device_mac'] = "00:00:00:00:00:01"
     message['timestamp'] = str(datetime.datetime.now())
     message['event_id'] = 1
-    message['event'] = json.dumps(pingData)
+    message['event'] = pingData
     messageJson = json.dumps(message)
     myAWSIoTMQTTClient.publishAsync("pl19/event", messageJson, 1)
 
@@ -43,7 +43,7 @@ def replyToPing(sequence):
 def customCallback(client, userdata, message):
     print("Received a new message: ")
     messageContent = json.loads(message.payload)
-    messageData = json.loads(messageContent['event'])
+    messageData = messageContent['event']
     print(messageContent)
     print(messageData['message'])
     print("Sequence ", messageData['sequence'])
@@ -63,7 +63,7 @@ parser.add_argument("-k", "--key", action="store", default="PL-student.private.k
 parser.add_argument("-p", "--port", action="store", dest="port", type=int, help="Port number override")
 parser.add_argument("-w", "--websocket", action="store_true", dest="useWebsocket", default=False,
                     help="Use MQTT over WebSocket")
-parser.add_argument("-id", "--clientId", action="store", dest="clientId", default="basicPubSub",
+parser.add_argument("-id", "--clientId", action="store", dest="clientId", default="pl19-s",
                     help="Targeted client id")
 parser.add_argument("-t", "--topic", action="store", dest="topic", default="pl19/event", help="Event topic")
 parser.add_argument("-m", "--mode", action="store", dest="mode", default="both",
