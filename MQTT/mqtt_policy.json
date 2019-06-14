@@ -39,10 +39,11 @@
         "iot:Connect"
       ],
       "Resource": [
-        "arn:aws:iot:us-west-2:423752110016:client/sdk-java",
-        "arn:aws:iot:us-west-2:423752110016:client/sdk-python",
-        "arn:aws:iot:us-west-2:423752110016:client/basicPubSub",
-        "arn:aws:iot:us-west-2:423752110016:client/sdk-nodejs-*"
+        "arn:aws:iot:us-west-2:423752110016:client/sdk-java-*",
+        "arn:aws:iot:us-west-2:423752110016:client/sdk-python-*",
+        "arn:aws:iot:us-west-2:423752110016:client/basicPubSub-*",
+        "arn:aws:iot:us-west-2:423752110016:client/sdk-nodejs-*",
+        "arn:aws:iot:us-west-2:423752110016:client/pl19-*"
       ]
     }
   ]
