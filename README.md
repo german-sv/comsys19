@@ -5,6 +5,9 @@
 ### /MQTT/Client/
 Sample client application for the ping service. Includes certificates and AWS library. Note: you can find the MQTT broker endhost inside the script.
 
+### /MQTT/mqtt_policy.json
+Contains the security policy used at the AWS Broker. Please note the selection of the clientId when connecting to the broker. Each group is required to use pl19-{group_id} to connect to the broker. 
+
 ### /MQTT/Broker/
 The server application that generates ping request messages.
 
